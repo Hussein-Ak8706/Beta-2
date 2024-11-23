@@ -1,0 +1,149 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #0b132b; /* Dark tech-themed background */
+    color: #fff;
+    margin: 0;
+}
+
+/* Header Section */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #1c2541; /* Darker section background */
+}
+
+header h1 {
+    font-size: 24px;
+    color: #5bc0be; /* Highlighted tech accent color */
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 16px;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: #5bc0be;
+}
+
+/* Hero Section */
+.hero {
+    text-align: center;
+    padding: 100px 20px;
+    background-color: #3a506b;
+   /* background-image: url('https://via.placeholder.com/1500x500'); /* Replace with a relevant image */
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+}
+
+.hero h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+
+.hero-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.btn {
+    padding: 15px 30px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.btn-primary {
+    background-color: #5bc0be; /* Primary accent color */
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background-color: #3a506b;
+    transform: scale(1.05);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    border: 2px solid #5bc0be;
+    color: #5bc0be;
+}
+
+.btn-secondary:hover {
+    background-color: #5bc0be;
+    color: #fff;
+    transform: scale(1.05);
+}
+
+/* Services Section */
+.services {
+    padding: 60px 20px;
+    text-align: center;
+    background-color: #1c2541; /* Matches the header */
+}
+
+.services h2 {
+    font-size: 36px;
+    margin-bottom: 40px;
+    color: #5bc0be;
+}
+
+.service-cards {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.service-card {
+    background-color: #3a506b; /* Card background */
+    padding: 20px;
+    border-radius: 10px;
+    width: 250px;
+    color: #fff;
+    text-align: left;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.service-card h3 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #5bc0be;
+}
+
+.service-card p {
+    font-size: 14px;
+    color: #ddd;
+}

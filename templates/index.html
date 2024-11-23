@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tech Themed Front Page</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+  <header>
+    <h1>Auction House</h1>
+    <ul class="nav-links">
+      <li><a href="#">Home</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+  </header>
+
+  <section class="hero">
+    <h1>Welcome To The University Auction House</h1>
+    <p>Explore the cutting-edge of technology with us!</p>
+    <div class="hero-buttons">
+      <a href="{{ url_for('homepage') }}" class="btn btn-primary">Get Started!</a>
+      <a href="#" class="btn btn-secondary">Learn More</a>
+    </div>
+  </section>
+
+  <section class="services" id="services">
+    <h2>Our Services</h2>
+    <div class="service-cards">
+      <div class="service-card">
+        <h3>Buying Items</h3>
+        <p>Users can buy items sellers have bought buy accident, or no longer need.</p>
+      </div>
+      <div class="service-card">
+        <h3>Selling Items</h3>
+        <p>Sellers can sell items using the auction method, as users can bid in a given time slot.</p>
+      </div>
+      <div class="service-card">
+        <h3>Lending Items</h3>
+        <p>Lenders can choose wether they wish to charge for the product lent or not.</p>
+        <p>Users can request the amount of time they wish to use the product for.</p>
+      </div>
+    </div>
+  </section>
+</body>
+</html>

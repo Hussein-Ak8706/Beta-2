@@ -79,3 +79,21 @@ By participating in this hackathon, you agree to follow the event’s Code of Co
 For any queries or support, feel free to contact the organizing team.  The full code of conduct can be found at [Fest Website](https://www.fitoorxprayas.in/rules)
 
 Happy hacking! 🎉
+
+
+# Resources
+
+Resources Used:-
+ChatGPT to get the BAsic skeleton of the website, linking the first page 
+SQLite,SQLAlchemy and flask documentation was used for connecting the database to the flask framework
+
+# Citations
+https://chatgpt.com/
+
+https://flask.palletsprojects.com/en/stable/
+
+https://www.sqlite.org/lang.html
+
+https://www.digitalocean.com/community/tutorials/how-to-use-the-sqlite3-module-in-python-3
+
+https://medium.com/@ccpythonprogramming/integrating-sqlite-with-python-getting-started-1f5b688b7ab1

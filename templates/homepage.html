@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>University Auction System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styling.css') }}">
+    
+</head>
+<body>
+    <h1>University Auction System</h1>
+
+    {% if message %}
+    <div class="message">{{ message }}</div>
+    {% endif %}
+
+    <h2>Auction Items</h2>
+    <table>
+        <tr>
+            <th>Item</th>
+            <th>Starting Price</th>
+            <th>Current Bid</th>
+            <th>Place a Bid</th>
+        </tr>
+        {% for auction in auctions %}
+        <tr>
+            <td>{{ auction.item }}</td>
+            <td>${{ auction.starting_price }}</td>
+            <td>
+                {% if auction.current_bid %}
+                    ${{ auction.current_bid }}
+                {% else %}
+                    No bids yet
+                {% endif %}
+            </td>
+            <td>
+                <form action="/place_bid" method="POST">
+                    <input type="hidden" name="item_id" value="{{ auction.id }}">
+                    <input type="number" name="bid_amount" step="0.01" min="0" required>
+                    <button type="submit">Place Bid</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
