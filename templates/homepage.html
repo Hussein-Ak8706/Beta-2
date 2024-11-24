@@ -36,7 +36,7 @@
             <td>
                 <form action="/place_bid" method="POST">
                     <input type="hidden" name="item_id" value="{{ auction.id }}">
-                    <input type="number" name="bid_amount" step="0.01" min="0" required>
+                    <input type="number" name="bid_amount" step="0.01" min="{{ auction.current_bid }}" required>
                     <button type="submit">Place Bid</button>
                 </form>
             </td>

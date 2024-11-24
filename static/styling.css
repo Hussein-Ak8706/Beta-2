@@ -1,42 +1,107 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f9f9f9;
+/* Global resets */
+* {
     margin: 0;
     padding: 0;
-}
-
-h1 {
+    box-sizing: border-box;
+  }
+  
+  /* Dark purple to black gradient background */
+  body {
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(135deg, #4b0082, #000000); /* dark purple to black */
+    background-size: cover;
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    color: white;
+  }
+  
+  /* Header styles */
+  h1 {
     text-align: center;
-    margin-top: 50px;
-}
-
-table {
+    color: #ff6347; /* Bright orange for the header */
+    font-weight: bold;
+    font-size: 3em;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+    border-bottom: 4px solid #ff6347;
+    padding-bottom: 15px;
+    margin-bottom: 40px;
+  }
+  
+  h2 {
+    text-align: center;
+    color: #ff6347;
+    font-size: 2rem;
+    margin-top: 30px;
+    margin-bottom: 20px;
+  }
+  
+  /* Table styles */
+  table {
     width: 80%;
     margin: 20px auto;
     border-collapse: collapse;
-    background-color: white;
-}
-
-th, td {
-    padding: 10px;
+    background-color: #000000; /* Black background for table */
+    border: 2px solid #ff6347; /* Orange border for the table */
+    border-radius: 8px;
+  }
+  
+  th, td {
+    padding: 12px;
     text-align: left;
-    border: 1px solid #ddd;
-}
-
-button {
-    padding: 5px 10px;
-    background-color: #4CAF50;
+    border: 1px solid #444; /* Darker black for table borders */
+  }
+  
+  th {
+    background-color: #4b0082; /* Dark purple for table headers */
+    color: white;
+    font-weight: bold;
+    border-bottom: 2px solid #ff6347; /* Orange border under table headers */
+  }
+  
+  td {
+    background-color: #222222; /* Darker black for table rows */
+    color: white;
+    font-weight: bold;
+  }
+  
+  /* Button styles */
+  button {
+    padding: 10px 20px;
+    background-color: #ff6347; /* Bright orange for the button */
     color: white;
     border: none;
     cursor: pointer;
-}
-
-button:hover {
-    background-color: #45a049;
-}
-
-.message {
+    border-radius: 6px;
+    transition: background-color 0.3s ease;
+    font-weight: bold;
+    text-transform: uppercase;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+  }
+  
+  button:hover {
+    background-color: #560d7b; /* Dark purple on hover */
+  }
+  
+  /* Message box */
+  .message {
     text-align: center;
-    color: green;
-    margin-top: 20px;
-}
+    color: #ff6347; /* Orange color for the message */
+    margin-top: 30px;
+    font-size: 1.2em;
+    border: 2px solid #ff6347; /* Orange border around the message */
+    padding: 15px;
+    width: 80%;
+    max-width: 800px; 
+    border-radius: 8px;
+    background-color: #000000; /* Black background for the message */
+    font-weight: bold;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+  }
+  
+  .message p {
+    margin: 0;
+    padding: 10px 0;
+    border-top: 1px solid #ff6347; /* Orange border separating message content */
+  }

@@ -1,0 +1,275 @@
+/* ================================
+   Global Styles
+================================= */
+
+/* Reset default margins and paddings */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Set background gradient and text color */
+body {
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(135deg, #4b0082, #000000); /* Dark purple to black gradient */
+  background-size: cover;
+  margin: 0; 
+  font-family: 'Arial', sans-serif;
+  color: white;
+}
+
+/* ================================
+   Header Section
+================================= */
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.7); /* Dark background for header */
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 10;
+}
+
+header h1 {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #fff;
+}
+
+/* Navigation links */
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+.nav-links li {
+  display: inline;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: #ff6347; /* Hover effect color */
+}
+
+/* ================================
+   Hero Section
+================================= */
+
+.hero {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding-top: 80px; /* Space for fixed header */
+}
+
+.hero h1 {
+  font-size: 3.5rem;
+  margin-bottom: 20px;
+  font-weight: bold;
+  color: #ff6347;
+}
+
+.hero p {
+  font-size: 1.4rem;
+  margin-bottom: 30px;
+  color: white;
+  opacity: 0.9;
+  max-width: 800px;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 20px;
+}
+
+.hero-buttons a {
+  text-decoration: none;
+  padding: 15px 30px;
+  margin: 10px;
+  border-radius: 5px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-primary {
+  background-color: #ff6347;
+  color: white;
+}
+
+.btn-secondary {
+  background-color: transparent;
+  border: 2px solid #ff6347;
+  color: white;
+}
+
+.hero-buttons a:hover {
+  transform: scale(1.1);
+}
+
+/* ================================
+   Services Section
+================================= */
+
+.services {
+  padding: 80px 20px;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.services h2 {
+  font-size: 2.8rem;
+  margin-bottom: 40px;
+  color: #ff6347;
+  font-weight: bold;
+}
+
+.service-cards {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+}
+
+.service-card {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 30px;
+  width: 280px;
+  text-align: center;
+  transition: transform 0.3s ease;
+  border: 1px solid #ff6347;
+}
+
+.service-card h3 {
+  font-size: 1.9rem;
+  margin-bottom: 20px;
+  color: #ff6347;
+  font-weight: 600;
+}
+
+.service-card p {
+  font-size: 1.1rem;
+  color: white;
+  opacity: 0.9;
+}
+
+.service-card:hover {
+  transform: translateY(-10px);
+}
+
+/* ================================
+   About Section
+================================= */
+
+.about {
+  padding: 80px 20px;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.6);
+  margin-bottom: 60px; /* Added space below About section */
+}
+
+.about h2 {
+  font-size: 2.8rem;
+  margin-bottom: 20px;
+  color: #ff6347;
+  font-weight: bold;
+}
+
+.about p {
+  font-size: 1.4rem;
+  color: white;
+  opacity: 0.8;
+  max-width: 800px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* ================================
+   Contact Section
+================================= */
+
+.contact {
+  padding: 80px 20px;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.contact h2 {
+  font-size: 2.8rem;
+  margin-bottom: 20px;
+  color: #ff6347;
+  font-weight: bold;
+}
+
+.contact form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.contact input,
+.contact textarea {
+  padding: 12px;
+  width: 100%;
+  max-width: 450px;
+  border: 1px solid #ff6347;
+  border-radius: 8px;
+  background-color: transparent;
+  color: white;
+  font-size: 1.1rem;
+}
+
+.contact button {
+  padding: 15px 30px;
+  border-radius: 8px;
+  background-color: #ff6347;
+  color: white;
+  font-size: 1.3rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  border: none;
+}
+
+.contact button:hover {
+  background-color: #d04e35;
+}
+
+/* ================================
+   Footer Section
+================================= */
+
+footer {
+  text-align: center;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.8);
+  position: relative;
+  bottom: 0;
+  width: 100%;
+}
+
+footer p {
+  color: white;
+  font-size: 0.9rem;
+}
+
