@@ -9,7 +9,12 @@ auctions = [
     {"id": 2, "item": "Projector", "starting_price": 200},
 ]
 
-
+con = sqlite3.connect('auct_datas.db')
+cur = con.cursor()
+table=list(cur.execute("""SELECT * FROM auctionItems"""))
+names = []
+for i in table:
+    names.append(i[1])
 # Route to display the auction homepage
 @app.route('/')
 def index():
@@ -31,10 +36,13 @@ def place_bid():
         if auction['id'] == item_id:
             auction['current_bid'] = bid_amount
             break
-    con = sqlite3.connect('auc_datas.db')
+    con = sqlite3.connect('auct_datas.db')
     cur = con.cursor()
-    cur.execute(f"INSERT INTO auctionItems Values('{item_id - 1}','{auctions[item_id - 1]['item']}', '{bid_amount}')")
-    
+    if auctions[item_id - 1]['item'] not in names:
+        cur.execute(f"INSERT INTO auctionItems Values('{item_id - 1}','{auctions[item_id - 1]['item']}', '{bid_amount}')")
+        names.append(auctions[item_id - 1]['item'])
+    else:
+        cur.execute(f"UPDATE auctionItems SET bid = '{bid_amount}' WHERE id = '{item_id - 1}'")
     con.commit()
     return render_template('homepage.html', auctions=auctions, message="Bid placed successfully!")
     
