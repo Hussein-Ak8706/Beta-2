@@ -6,6 +6,36 @@ import time
 
 app = Flask(__name__)
 
+def init_db():
+    con = sqlite3.connect('auct_datas_2.db')
+    cur = con.cursor()
+    
+    # Create auction items table if it doesn't exist
+    cur.execute("""
+        CREATE TABLE IF NOT EXISTS auctionItems
+        (id INTEGER PRIMARY KEY AUTOINCREMENT,
+         item TEXT NOT NULL,
+         starting_price REAL NOT NULL,
+         current_bid REAL,
+         image BLOB,
+         description TEXT,
+         end_time INTEGER NOT NULL)
+    """)
+    
+    # Create request items table if it doesn't exist
+    cur.execute("""
+        CREATE TABLE IF NOT EXISTS requestItems
+        (id INTEGER PRIMARY KEY AUTOINCREMENT,
+         item TEXT NOT NULL,
+         description TEXT,
+         image BLOB,
+         contact TEXT NOT NULL,
+         created_at TIMESTAMP NOT NULL)
+    """)
+    
+    con.commit()
+    con.close()
+
 def remove_expired_items():
     """Remove items that have expired based on their TTL"""
     current_time = int(time.time())
@@ -89,6 +119,48 @@ def add_item():
 
     return render_template('add_item.html')
 
+@app.route("/requests")
+def requests():
+    con = sqlite3.connect('auct_datas_2.db')
+    cur = con.cursor()
+    cur.execute("SELECT * FROM requestItems ORDER BY created_at DESC")
+    requests = []
+    for row in cur.fetchall():
+        request_item = {
+            'id': row[0],
+            'item': row[1],
+            'description': row[2],
+            'image': base64.b64encode(row[3]).decode('utf-8') if row[3] else None,
+            'contact': row[4],
+            'created_at': row[5]
+        }
+        requests.append(request_item)
+    con.close()
+    return render_template("requests.html", requests=requests)
+
+@app.route('/add_request', methods=['GET', 'POST'])
+def add_request():
+    if request.method == 'POST':
+        item = request.form['item']
+        description = request.form['description']
+        contact = request.form['contact']
+        image = request.files['image'].read() if 'image' in request.files else None
+        created_at = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+
+        con = sqlite3.connect('auct_datas_2.db')
+        cur = con.cursor()
+        cur.execute("""
+            INSERT INTO requestItems 
+            (item, description, image, contact, created_at) 
+            VALUES (?, ?, ?, ?, ?)""",
+            (item, description, image, contact, created_at))
+        con.commit()
+        con.close()
+
+        return redirect(url_for('requests'))
+
+    return render_template('add_request.html')
+
 @app.route('/place_bid', methods=['POST'])
 def place_bid():
     remove_expired_items()  # Clean up expired items
@@ -100,7 +172,6 @@ def place_bid():
     cur = con.cursor()
     
     # Check if item hasn't expired
-    cur.execute("SELECT end_time FROM auctionItems WHERE id = ?", (item_id,))
     result = cur.execute("SELECT end_time FROM auctionItems WHERE id = ?", (item_id,)).fetchone()
     
     if not result or result[0] < int(time.time()):
@@ -131,5 +202,5 @@ def place_bid():
     return render_template('homepage.html', auctions=auctions, message="Bid placed successfully!")
 
 if __name__ == "__main__":
-    remove_expired_items()  # Clean up any expired items on startup
+    init_db()  # Initialize database tables
     app.run(debug=True)

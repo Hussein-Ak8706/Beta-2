@@ -1,13 +1,6 @@
 /* ================================
    Global Styles
 ================================= */
-:root {
-  --primary-color: #4b0082;
-  --secondary-color: #ff6347;
-  --bg-dark: #000000;
-  --text-light: #ffffff;
-}
-
 * {
   margin: 0;
   padding: 0;
@@ -15,12 +8,12 @@
 }
 
 body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Arial', sans-serif;
-  background: linear-gradient(135deg, var(--primary-color), var(--bg-dark));
-  color: var(--text-light);
+  width: 100%;
   min-height: 100vh;
+  background-image: linear-gradient(135deg, #4b0082, #000000);
+  font-family: 'Arial', sans-serif;
+  color: white;
+  line-height: 1.6;
 }
 
 .container {
@@ -30,15 +23,15 @@ body {
 }
 
 /* ================================
- Header Styles
+ Header Section
 ================================= */
 header {
   background-color: rgba(0, 0, 0, 0.7);
-  padding: 20px 0;
   position: fixed;
   width: 100%;
   top: 0;
   z-index: 1000;
+  padding: 1rem 0;
 }
 
 header .container {
@@ -50,195 +43,46 @@ header .container {
 header h1 {
   font-size: 2rem;
   font-weight: bold;
-  color: var(--secondary-color);
-  margin: 0;
+  color: #fff;
 }
 
 .nav-links {
   list-style: none;
   display: flex;
-  gap: 20px;
+  gap: 2rem;
 }
 
 .nav-links a {
   text-decoration: none;
-  color: var(--text-light);
+  color: white;
   font-size: 1.1rem;
   font-weight: 600;
   transition: color 0.3s ease;
 }
 
 .nav-links a:hover {
-  color: var(--secondary-color);
+  color: #ff6347;
 }
 
 /* ================================
- Hero Section
+ Main Content Sections
 ================================= */
-.hero {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 0 20px;
-  background: linear-gradient(rgba(75, 0, 130, 0.8), rgba(0, 0, 0, 0.8));
-}
-
-.hero h1 {
-  font-size: 3.5rem;
-  margin-bottom: 20px;
-  color: var(--secondary-color);
-}
-
-.hero p {
-  font-size: 1.8rem;
-  margin-bottom: 40px;
-  color: var(--text-light);
-}
-
-.hero-buttons {
-  display: flex;
-  gap: 20px;
-}
-
-/* ================================
- Button Styles
-================================= */
-.btn {
-  padding: 0.8rem 1.5rem;
-  border-radius: 6px;
-  font-size: 1rem;
-  font-weight: 600;
-  text-decoration: none;
-  transition: all 0.3s ease;
-  cursor: pointer;
-  border: none;
-}
-
-.btn-primary {
-  background-color: var(--secondary-color);
-  color: var(--text-light);
-}
-
-.btn-secondary {
-  background-color: transparent;
-  color: var(--text-light);
-  border: 2px solid var(--secondary-color);
-}
-
-.btn-primary:hover {
-  background-color: #d04e35;
-  transform: translateY(-2px);
-}
-
-.btn-secondary:hover {
-  background-color: rgba(255, 99, 71, 0.1);
-  transform: translateY(-2px);
-}
-
-/* Hero-specific button styles */
-.hero .btn {
-  padding: 15px 40px;
-  border-radius: 30px;
-  font-size: 1.2rem;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-/* ================================
- Services Section
-================================= */
-.services {
-  padding: 80px 20px;
-  text-align: center;
-  background-color: rgba(0, 0, 0, 0.8);
-}
-
-.services h2 {
-  font-size: 2.8rem;
-  margin-bottom: 40px;
-  color: var(--secondary-color);
-}
-
-.service-cards {
-  display: flex;
-  justify-content: center;
-  gap: 30px;
-  flex-wrap: wrap;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.service-card {
-  background-color: rgba(255, 255, 255, 0.05);
-  border: 1px solid var(--secondary-color);
-  border-radius: 15px;
-  padding: 30px;
-  width: 300px;
-  text-align: center;
-  transition: transform 0.3s ease;
-}
-
-.service-card:hover {
-  transform: translateY(-10px);
-}
-
-.service-card h3 {
-  color: var(--secondary-color);
-  font-size: 1.5rem;
-  margin-bottom: 15px;
-}
-
-.service-card p {
-  color: var(--text-light);
-  line-height: 1.6;
-}
-
-/* ================================
- About Section
-================================= */
-.about {
-  padding: 80px 20px;
-  text-align: center;
-  background-color: rgba(0, 0, 0, 0.6);
-}
-
-.about h2 {
-  color: var(--secondary-color);
-  font-size: 2.5rem;
-  margin-bottom: 30px;
-}
-
-.about p {
-  max-width: 800px;
-  margin: 0 auto;
-  line-height: 1.8;
-  font-size: 1.2rem;
-  color: var(--text-light);
-}
-
-/* ================================
- Auction Page Styles
-================================= */
-.auction-main {
-  padding-top: 80px;
+.auction-main,
+.requests-main {
+  padding-top: 100px;
   min-height: 100vh;
+  padding-bottom: 2rem;
 }
 
-.auction-main .container {
-  margin-top: 2rem;
-}
-
-.auction-main h2 {
-  color: var(--secondary-color);
+main h2 {
   font-size: 2.5rem;
-  text-align: center;
-  margin: 2rem 0;
-  font-weight: bold;
+  color: #ff6347;
+  margin-bottom: 2rem;
 }
 
+/* ================================
+ Auction Grid and Cards
+================================= */
 .auction-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -246,13 +90,12 @@ header h1 {
   padding: 2rem 0;
 }
 
-/* Auction Card Styles */
 .auction-card {
-  background: rgba(255, 255, 255, 0.1);
+  background-color: rgba(255, 255, 255, 0.1);
   border-radius: 12px;
   overflow: hidden;
   transition: transform 0.3s ease;
-  border: 1px solid var(--secondary-color);
+  border: 1px solid rgba(255, 99, 71, 0.5);
 }
 
 .auction-card:hover {
@@ -270,143 +113,364 @@ header h1 {
 }
 
 .auction-title {
-  color: var(--secondary-color);
   font-size: 1.5rem;
+  color: #ff6347;
   margin-bottom: 1rem;
 }
 
 .auction-description {
+  color: white;
   margin-bottom: 1rem;
   line-height: 1.4;
 }
 
-/* Auction Price and Time */
+/* ================================
+ Price Display
+================================= */
 .auction-price {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  margin-bottom: 1rem;
+  margin: 1rem 0;
   padding: 1rem;
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 6px;
+  border-radius: 8px;
+  background-color: rgba(255, 99, 71, 0.1);
+  border: 1px solid rgba(255, 99, 71, 0.3);
 }
 
-.time-remaining-container {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  margin-top: 1rem;
-  padding: 0.5rem;
-  background: rgba(0, 0, 0, 0.2);
-  border-radius: 4px;
+.starting-price,
+.current-bid {
+  color: white;
+  margin: 0.5rem 0;
+  font-weight: 600;
 }
 
-.countdown {
-  font-family: monospace;
+.price-amount {
+  color: #ff6347;
   font-size: 1.2rem;
   font-weight: bold;
-  color: var(--secondary-color);
 }
 
-.end-datetime {
-  font-size: 0.8rem;
-  opacity: 0.8;
+/* ================================
+ Countdown Timer
+================================= */
+.time-remaining-container {
+  margin: 1rem 0;
 }
 
-.expired {
-  color: #ff0000;
+.countdown-container {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+  padding: 0.75rem;
+  margin: 1rem 0;
+  text-align: center;
+}
+
+.countdown-timer {
+  font-family: 'Courier New', monospace;
+  font-size: 1.2rem;
+  color: #ff6347;
   font-weight: bold;
+  letter-spacing: 2px;
 }
 
-/* Bid Form Styles */
-.bid-form {
-  margin-top: 1rem;
+.time-label {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 0.25rem;
 }
 
+.time-remaining {
+  color: white;
+  font-weight: 600;
+}
+
+.time-remaining.expired {
+  color: #ff6347;
+}
+
+/* ================================
+ Bid Form
+================================= */
 .bid-input-group {
   display: flex;
   gap: 0.5rem;
+  margin-top: 1rem;
 }
 
 .bid-input-group input {
   flex: 1;
-  padding: 0.8rem;
-  border: 1px solid var(--secondary-color);
-  border-radius: 6px;
-  background: transparent;
-  color: var(--text-light);
-  font-size: 1rem;
+  padding: 0.75rem;
+  border: 1px solid rgba(255, 99, 71, 0.5);
+  border-radius: 8px;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
 }
 
 .bid-input-group input::placeholder {
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(255, 255, 255, 0.5);
 }
 
-/* Add Item Form Styles */
-.auction-form {
-  max-width: 500px;
-  margin: 2rem auto;
+.bid-btn {
+  padding: 0.75rem 1.5rem;
+  background-color: #ff6347;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+.bid-btn:hover {
+  background-color: #d04e35;
+}
+
+/* ================================
+ Add Item/Request Button
+================================= */
+.add-item-btn,
+.add-request-btn {
+  display: inline-block;
+  padding: 1rem 2rem;
+  background-color: #ff6347;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  margin-top: 2rem;
+  transition: background-color 0.3s ease;
+}
+
+.add-item-btn:hover,
+.add-request-btn:hover {
+  background-color: #d04e35;
+}
+
+/* ================================
+ Messages and Alerts
+================================= */
+.message {
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 1rem;
+  margin: 1rem 0;
+  border-radius: 8px;
+  text-align: center;
+  color: white;
+}
+
+.no-auctions {
+  text-align: center;
   padding: 2rem;
-  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1.2rem;
+}
+
+/* ================================
+ Footer
+================================= */
+footer {
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 1.5rem 0;
+  text-align: center;
+  margin-top: auto;
+}
+
+footer p {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.9rem;
+}
+
+/* ================================
+ Media Queries
+================================= */
+@media (max-width: 768px) {
+  header h1 {
+      font-size: 1.5rem;
+  }
+
+  .nav-links {
+      gap: 1rem;
+  }
+
+  .nav-links a {
+      font-size: 1rem;
+  }
+
+  .auction-grid {
+      grid-template-columns: 1fr;
+  }
+
+  .bid-input-group {
+      flex-direction: column;
+  }
+
+  .bid-btn {
+      width: 100%;
+  }
+}
+/* Add these styles to your existing styles.css */
+
+/* ================================
+   Hero Section Styles
+================================= */
+.hero {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 0 20px;
+}
+
+.hero h1 {
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+  color: #ff6347;
+}
+
+.hero p {
+  font-size: 1.4rem;
+  margin-bottom: 2rem;
+  opacity: 0.9;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+.btn {
+  display: inline-block;
+  padding: 1rem 2rem;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: transform 0.3s ease;
+}
+
+.btn:hover {
+  transform: scale(1.05);
+}
+
+.btn-primary {
+  background-color: #ff6347;
+  color: white;
+}
+
+.btn-secondary {
+  background-color: transparent;
+  border: 2px solid #ff6347;
+  color: white;
+}
+
+/* ================================
+ Request Grid and Cards
+================================= */
+.request-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+  padding: 2rem 0;
+}
+
+.request-card {
+  background-color: rgba(255, 255, 255, 0.1);
   border-radius: 12px;
-  border: 1px solid var(--secondary-color);
+  overflow: hidden;
+  transition: transform 0.3s ease;
+  border: 1px solid rgba(255, 99, 71, 0.5);
 }
 
-.form-group {
-  margin-bottom: 1.5rem;
+.request-card:hover {
+  transform: translateY(-5px);
 }
 
-.form-group label {
-  display: block;
-  color: var(--text-light);
+.request-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.request-details {
+  padding: 1.5rem;
+}
+
+.request-title {
+  font-size: 1.5rem;
+  color: #ff6347;
+  margin-bottom: 1rem;
+}
+
+.request-description {
+  color: white;
+  margin-bottom: 1rem;
+  line-height: 1.4;
+}
+
+.contact-info {
+  margin-top: 1rem;
+  padding: 1rem;
+  background-color: rgba(255, 99, 71, 0.1);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 99, 71, 0.3);
+}
+
+.contact-label {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem;
+  margin-bottom: 0.25rem;
+}
+
+.contact-value {
+  color: #ff6347;
+  font-size: 1.1rem;
+  font-weight: 600;
   margin-bottom: 0.5rem;
 }
 
-.form-group input,
-.form-group textarea {
-  width: 100%;
-  padding: 0.8rem;
-  border: 1px solid var(--secondary-color);
-  border-radius: 6px;
-  background: transparent;
-  color: var(--text-light);
+.request-date {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem;
 }
 
-/* Message Styles */
-.message {
-  background-color: rgba(255, 99, 71, 0.2);
-  padding: 1rem;
-  border-radius: 8px;
-  margin: 1rem 0;
-  text-align: center;
-  border: 1px solid var(--secondary-color);
+/* ================================
+ Services Section
+================================= */
+.section {
+  padding: 5rem 0;
+  background-color: rgba(0, 0, 0, 0.6);
 }
 
-/* No Auctions Message */
-.no-auctions {
+.services h2 {
+  font-size: 2.8rem;
   text-align: center;
-  padding: 3rem;
-  background: rgba(255, 255, 255, 0.1);
+  margin-bottom: 3rem;
+  color: #ff6347;
+}
+
+.service-cards {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+  padding: 0 20px;
+}
+
+.service-card {
+  background-color: rgba(255, 255, 255, 0.1);
   border-radius: 12px;
-  border: 1px solid var(--secondary-color);
-  margin: 2rem 0;
+  padding: 2rem;
+  width: 300px;
+  text-align: center;
+  transition: transform 0.3s ease;
+  border: 1px solid rgba(255, 99, 71, 0.5);
 }
 
-.no-auctions p {
-  font-size: 1.2rem;
-  color: var(--text-light);
+.service-card:hover {
+  transform: translateY(-10px);
 }
 
-/* Add Item Button */
-.add-item-btn {
-  position: fixed;
-  bottom: 2rem;
-  right: 2rem;
-  background-color: var(--secondary-color);
-  color: var(--text-light);
-  padding: 1rem 2rem;
-  border-radius: 30px;
-  text-decoration: none;
-  font-weight: 600;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+.service-card h3 {
+  font-size: 1.8rem;
+  color: #ff6347;
+  margin-bottom: 1rem;
 }

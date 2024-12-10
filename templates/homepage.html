@@ -10,16 +10,16 @@
     <header>
         <div class="container">
             <h1>StudentStash</h1>
-            <nav>
-                <a href="{{ url_for('index') }}">Home</a>
-                <a href="{{ url_for('homepage') }}">Auctions</a>
-                <a href="#about">About</a>
-                <a href="#contact">Contact</a>
-            </nav>
+            <ul class="nav-links">
+                <li><a href="{{ url_for('index') }}">Home</a></li>
+                <li><a href="{{ url_for('homepage') }}">Auctions</a></li>
+                <li><a href="{{ url_for('requests') }}">Requests</a></li>
+                <li><a href="#about">About</a></li>
+            </ul>
         </div>
     </header>
 
-    <main class="auction-main">
+    <main class="auction-main" role="main">
         <div class="container">
             <h2>Current Auctions</h2>
             
@@ -28,50 +28,64 @@
                 {{ message }}
             </div>
             {% endif %}
-
+            
             <div class="auction-grid">
                 {% if auctions %}
                     {% for auction in auctions %}
                     <div class="auction-card" data-end-time="{{ auction.end_time }}">
                         {% if auction.image %}
-                        <img src="data:image/jpeg;base64,{{ auction.image }}" alt="{{ auction.item }}" class="auction-image">
+                        <img src="data:image/jpeg;base64,{{ auction.image }}" 
+                             alt="{{ auction.item }}" 
+                             class="auction-image">
                         {% endif %}
+                        
                         <div class="auction-details">
                             <h3 class="auction-title">{{ auction.item }}</h3>
+                            
                             {% if auction.description %}
                             <p class="auction-description">{{ auction.description }}</p>
                             {% endif %}
+                            
                             <div class="auction-price">
-                                <span class="starting-price">Starting Price: ₹{{ "%.2f"|format(auction.starting_price) }}</span>
-                                <span class="current-bid">
+                                <p class="starting-price">
+                                    Starting Price: <span class="price-amount">₹{{ "%.2f"|format(auction.starting_price) }}</span>
+                                </p>
+                                <p class="current-bid">
                                     Current Bid: 
-                                    {% if auction.current_bid %}
-                                        ₹{{ "%.2f"|format(auction.current_bid) }}
-                                    {% else %}
-                                        No bids yet
-                                    {% endif %}
-                                </span>
-                                <div class="time-remaining-container">
-                                    <span class="time-remaining {% if auction.time_remaining == 'Expired' %}expired{% endif %}">
-                                        Time Remaining: {{ auction.time_remaining }}
+                                    <span class="price-amount">
+                                        {% if auction.current_bid %}
+                                            ₹{{ "%.2f"|format(auction.current_bid) }}
+                                        {% else %}
+                                            No bids yet
+                                        {% endif %}
                                     </span>
-                                    <span class="countdown" data-end-time="{{ auction.end_time }}">
-                                        Calculating...
-                                    </span>
-                                    <small class="end-datetime">Ends: {{ auction.end_datetime }}</small>
-                                </div>
+                                </p>
                             </div>
+
+                            <div class="time-remaining-container">
+                                <p class="time-remaining {% if auction.time_remaining == 'Expired' %}expired{% endif %}">
+                                    Status: {{ auction.time_remaining }}
+                                </p>
+                                <div class="countdown-container">
+                                    <div class="time-label">Time Left</div>
+                                    <div class="countdown-timer" data-end-time="{{ auction.end_time }}">
+                                        Calculating...
+                                    </div>
+                                </div>
+                                <p class="small">Ends: {{ auction.end_datetime }}</p>
+                            </div>
+
                             {% if auction.time_remaining != 'Expired' %}
-                            <form method="POST" action="{{ url_for('place_bid') }}" class="bid-form">
+                            <form class="bid-form" action="{{ url_for('place_bid') }}" method="post">
                                 <input type="hidden" name="item_id" value="{{ auction.id }}">
                                 <div class="bid-input-group">
                                     <input type="number" 
                                            name="bid_amount" 
                                            step="0.01" 
-                                           min="{{ auction.current_bid or auction.starting_price }}" 
+                                           min="{{ auction.current_bid if auction.current_bid else auction.starting_price }}"
                                            placeholder="Enter bid amount"
                                            required>
-                                    <button type="submit" class="btn btn-primary">Place Bid</button>
+                                    <button type="submit" class="bid-btn">Place Bid</button>
                                 </div>
                             </form>
                             {% endif %}
@@ -79,58 +93,49 @@
                     </div>
                     {% endfor %}
                 {% else %}
-                    <div class="no-auctions">
-                        <p>No active auctions available at the moment.</p>
-                    </div>
+                <div class="no-auctions">
+                    No active auctions available at the moment.
+                </div>
                 {% endif %}
             </div>
-
+            
             <a href="{{ url_for('add_item') }}" class="add-item-btn">+ Add New Item</a>
         </div>
     </main>
 
     <footer>
         <div class="container">
-            <p>&copy; 2024 StudentStash. All rights reserved.</p>
+            © 2024 StudentStash | All Rights Reserved
         </div>
     </footer>
 
     <script>
-        function updateCountdown() {
-            const countdowns = document.querySelectorAll('.countdown');
-            const now = Math.floor(Date.now() / 1000);
+    function updateCountdown() {
+        const now = Math.floor(Date.now() / 1000);
+        const countdownElements = document.querySelectorAll('.countdown-timer');
+        
+        countdownElements.forEach(element => {
+            const endTime = parseInt(element.getAttribute('data-end-time'));
+            const timeLeft = endTime - now;
+            
+            if (timeLeft <= 0) {
+                element.textContent = "EXPIRED";
+                element.style.color = "#ff0000";
+                return;
+            }
+            
+            const hours = Math.floor(timeLeft / 3600);
+            const minutes = Math.floor((timeLeft % 3600) / 60);
+            const seconds = timeLeft % 60;
+            
+            element.textContent = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        });
+    }
 
-            countdowns.forEach(countdown => {
-                const endTime = parseInt(countdown.dataset.endTime);
-                const timeLeft = endTime - now;
-
-                if (timeLeft <= 0) {
-                    countdown.innerHTML = 'Expired';
-                    countdown.classList.add('expired');
-                    // Reload page if any item expires
-                    location.reload();
-                    return;
-                }
-
-                const days = Math.floor(timeLeft / 86400);
-                const hours = Math.floor((timeLeft % 86400) / 3600);
-                const minutes = Math.floor((timeLeft % 3600) / 60);
-                const seconds = timeLeft % 60;
-
-                let countdownText = '';
-                if (days > 0) countdownText += `${days}d `;
-                if (hours > 0 || days > 0) countdownText += `${hours}h `;
-                if (minutes > 0 || hours > 0 || days > 0) countdownText += `${minutes}m `;
-                countdownText += `${seconds}s`;
-
-                countdown.innerHTML = countdownText;
-            });
-        }
-
-        // Update countdown every second
-        setInterval(updateCountdown, 1000);
-        // Initial update
-        updateCountdown();
+    // Update every second
+    setInterval(updateCountdown, 1000);
+    // Initial update
+    updateCountdown();
     </script>
 </body>
 </html>

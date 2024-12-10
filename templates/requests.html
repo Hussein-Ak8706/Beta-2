@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudentStash - Requests</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>StudentStash</h1>
+            <ul class="nav-links">
+                <li><a href="{{ url_for('index') }}">Home</a></li>
+                <li><a href="{{ url_for('homepage') }}">Auctions</a></li>
+                <li><a href="{{ url_for('requests') }}">Requests</a></li>
+                <li><a href="#about">About</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <main class="requests-main" role="main">
+        <div class="container">
+            <h2>Current Requests</h2>
+            
+            {% if message %}
+            <div class="message">
+                {{ message }}
+            </div>
+            {% endif %}
+            
+            <div class="request-grid">
+                {% if requests %}
+                    {% for request in requests %}
+                    <div class="request-card">
+                        {% if request.image %}
+                        <img src="data:image/jpeg;base64,{{ request.image }}" 
+                             alt="{{ request.item }}" 
+                             class="request-image">
+                        {% endif %}
+                        
+                        <div class="request-details">
+                            <h3 class="request-title">{{ request.item }}</h3>
+                            
+                            {% if request.description %}
+                            <p class="request-description">{{ request.description }}</p>
+                            {% endif %}
+                            
+                            <div class="contact-info">
+                                <p class="contact-label">Contact:</p>
+                                <p class="contact-value">{{ request.contact }}</p>
+                                <p class="request-date">Posted: {{ request.created_at }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                {% else %}
+                <div class="no-requests">
+                    No requests available at the moment.
+                </div>
+                {% endif %}
+            </div>
+            
+            <a href="{{ url_for('add_request') }}" class="add-request-btn">+ Add New Request</a>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            © 2024 StudentStash | All Rights Reserved
+        </div>
+    </footer>
+</body>
+</html>

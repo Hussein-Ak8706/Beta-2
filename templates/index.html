@@ -3,18 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>StudentStash - University Auction Platform</title>
+    <title>StudentStash</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
     <header>
         <div class="container">
             <h1>StudentStash</h1>
-            <nav class="nav-links">
-                <a href="{{ url_for('index') }}">Home</a>
-                <a href="{{ url_for('homepage') }}">Auctions</a>
-                <a href="#about">About</a>
-            </nav>
+            <ul class="nav-links">
+                <li><a href="{{ url_for('index') }}">Home</a></li>
+                <li><a href="{{ url_for('homepage') }}">Auctions</a></li>
+                <li><a href="{{ url_for('requests') }}">Requests</a></li>
+                <li><a href="#about">About</a></li>
+            </ul>
         </div>
     </header>
 
@@ -23,11 +24,11 @@
         <p>Your On-Campus Marketplace</p>
         <div class="hero-buttons">
             <a href="{{ url_for('homepage') }}" class="btn btn-primary">Auctions</a>
-            <a href="#" class="btn btn-secondary">Requests</a>
+            <a href="{{ url_for('requests') }}" class="btn btn-secondary">Requests</a>
         </div>
     </section>
 
-    <section id="services" class="services">
+    <section id="services" class="section services">
         <h2>Our Services</h2>
         <div class="service-cards">
             <div class="service-card">
@@ -47,14 +48,14 @@
         </div>
     </section>
 
-    <section id="about" class="about">
+    <section id="about" class="section about">
         <h2>About Us</h2>
         <p>StudentStash is a student-focused marketplace that connects university students through auctions and requests. Our platform makes it easy to buy, sell, and find items within your campus community.</p>
     </section>
 
     <footer>
         <div class="container">
-            <p>&copy; 2024 StudentStash | All Rights Reserved</p>
+            © 2024 StudentStash | All Rights Reserved
         </div>
     </footer>
 </body>
