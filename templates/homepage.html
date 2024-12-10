@@ -3,52 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Auction Page</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>StudentStash - Auctions</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
     <header>
         <div class="container">
             <h1>StudentStash</h1>
             <nav>
-                <ul>
-                    <li><a href="{{ url_for('index') }}">Home</a></li>
-                    <li><a href="{{ url_for('auction') }}">Auction</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Contact</a></li>
-                </ul>
+                <a href="{{ url_for('index') }}">Home</a>
+                <a href="{{ url_for('homepage') }}">Auctions</a>
+                <a href="#about">About</a>
+                <a href="#contact">Contact</a>
             </nav>
         </div>
     </header>
 
     <main class="auction-main">
         <div class="container">
-            <h1>Auction Items</h1>
-
+            <h2>Current Auctions</h2>
+            
             {% if message %}
-            <div class="message">{{ message }}</div>
+            <div class="message">
+                {{ message }}
+            </div>
             {% endif %}
 
             <div class="auction-grid">
-                {% for auction in auctions %}
-                <div class="auction-card">
-                    <img src="{{ auction.image }}" alt="{{ auction.item }}" class="auction-image">
-                    <div class="auction-details">
-                        <h2 class="auction-title">{{ auction.item }}</h2>
-                        <p class="auction-description">{{ auction.description }}</p>
-                        <div class="auction-price">
-                            <span class="starting-price">Starting Price: ${{ auction.starting_price }}</span>
-                            <span class="current-bid">Current Bid: {% if auction.current_bid %}${{ auction.current_bid }}{% else %}No bids yet{% endif %}</span>
+                {% if auctions %}
+                    {% for auction in auctions %}
+                    <div class="auction-card">
+                        {% if auction.image %}
+                        <img src="data:image/jpeg;base64,{{ auction.image }}" alt="{{ auction.item }}" class="auction-image">
+                        {% endif %}
+                        <div class="auction-details">
+                            <h3 class="auction-title">{{ auction.item }}</h3>
+                            {% if auction.description %}
+                            <p class="auction-description">{{ auction.description }}</p>
+                            {% endif %}
+                            <div class="auction-price">
+                                <span class="starting-price">Starting Price: ${{ "%.2f"|format(auction.starting_price) }}</span>
+                                <span class="current-bid">
+                                    Current Bid: 
+                                    {% if auction.current_bid %}
+                                        ${{ "%.2f"|format(auction.current_bid) }}
+                                    {% else %}
+                                        No bids yet
+                                    {% endif %}
+                                </span>
+                            </div>
+                            <form method="POST" action="{{ url_for('place_bid') }}" class="bid-form">
+                                <input type="hidden" name="item_id" value="{{ auction.id }}">
+                                <div class="bid-input-group">
+                                    <input type="number" 
+                                           name="bid_amount" 
+                                           step="0.01" 
+                                           min="{{ auction.current_bid or auction.starting_price }}" 
+                                           placeholder="Enter bid amount"
+                                           required>
+                                    <button type="submit" class="btn btn-primary">Place Bid</button>
+                                </div>
+                            </form>
                         </div>
-                        <form action="{{ url_for('place_bid') }}" method="post" class="bid-form">
-                            <input type="hidden" name="item_id" value="{{ auction.id }}">
-                            <input type="number" name="bid_amount" min="{{ auction.current_bid or auction.starting_price }}" step="0.01" placeholder="Enter your bid" required>
-                            <button type="submit" class="bid-button">Place Bid</button>
-                        </form>
                     </div>
-                </div>
-                {% endfor %}
+                    {% endfor %}
+                {% else %}
+                    <div class="no-auctions">
+                        <p>No auctions available at the moment.</p>
+                    </div>
+                {% endif %}
             </div>
+
+            <a href="{{ url_for('add_item') }}" class="add-item-btn">+ Add New Item</a>
         </div>
     </main>
 
@@ -57,7 +83,5 @@
             <p>&copy; 2024 StudentStash. All rights reserved.</p>
         </div>
     </footer>
-
-    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 </body>
 </html>
